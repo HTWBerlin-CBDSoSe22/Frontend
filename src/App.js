@@ -15,7 +15,7 @@ function App() {
 
         {/*<Login/>*/}
         {/*<TestTable/>*/}
-        <PageComponents/>
+
 
       <h1 className="title">COMPONENTS</h1>
         <div>
@@ -56,6 +56,9 @@ function App() {
                 </Container>
             </Navbar>
         </div>
+
+        <PageComponents/>
+
     </div>
   );
 }
