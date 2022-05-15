@@ -6,6 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 function Login(){
     return(
         <div>
+            <h1>Hello Log In</h1>
             <Form>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>

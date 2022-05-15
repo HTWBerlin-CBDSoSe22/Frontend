@@ -13,11 +13,14 @@ import PageComponents from "./PageComponents";
 import Login from "./Login.js";
 import Contact from "./Contact";
 import NoMatch from "./NoMatch";
-
+import Container from "react-bootstrap/Container";
+import PageComponentsBanner from "./PageComponentsBanner";
 
 function App() {
   return (
     <div>
+        <PageComponentsBanner />
+        <Container>
 
         {/*<Login/>*/}
         {/*<TestTable/>*/}
@@ -98,7 +101,7 @@ function App() {
         {/*</div>*/}
 
         {/*<PageComponents/>*/}
-
+        </Container>
     </div>
   );
 }
