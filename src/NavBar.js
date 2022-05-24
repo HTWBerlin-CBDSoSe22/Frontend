@@ -15,6 +15,7 @@ import Products from "./Products";
 import SwitchCurrency from "./SwitchCurrency";
 // import React from "@types/react";
 import React from "react";
+import {Dropdown} from "react-bootstrap";
 
 function NavBar(){
     return(
@@ -33,7 +34,20 @@ function NavBar(){
                                 <Nav.Link href="/login">Login</Nav.Link>
                                 <Nav.Link href="/pageComponents">Components</Nav.Link>
                                 <Nav.Link href="/products">Products</Nav.Link>
-                                <Nav.Link href="/switchCurrency">Switch Currency</Nav.Link>
+                                {/*<Nav.Link href="/switchCurrency">Switch Currency</Nav.Link>*/}
+
+                                <Dropdown>
+                                    <Dropdown.Toggle variant="success" id="dropdown-basic">
+                                        Choose Currency
+                                    </Dropdown.Toggle>
+
+                                    <Dropdown.Menu>
+                                        <Dropdown.Item href="/currencyEuro">Euro</Dropdown.Item>
+                                        <Dropdown.Item href="/currencyDollar">Dollar</Dropdown.Item>
+                                        <Dropdown.Item href="/currencySwedishCrown">Swedish Crown</Dropdown.Item>
+                                    </Dropdown.Menu>
+                                </Dropdown>
+
                             </Nav>
                         </Navbar.Collapse>
                     </Container>
