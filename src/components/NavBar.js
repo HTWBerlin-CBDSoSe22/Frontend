@@ -6,13 +6,11 @@ import Form from "react-bootstrap/Form";
 import FormControl from "react-bootstrap/FormControl";
 import Container from "react-bootstrap/Container";
 import {BrowserRouter as Router, Link, Route, Routes} from "react-router-dom";
-import Login from "./Login";
-import PageComponents from "./PageComponents";
-import Contact from "./Contact";
-import NoMatch from "./NoMatch";
-import Welcome from "./Welcome";
-import Products from "./Products";
-import SwitchCurrency from "./SwitchCurrency";
+import Login from "../pages/Login";
+import PageComponents from "../pages/PageComponents";
+import NoMatch from "../pages/NoMatch";
+import Welcome from "../pages/Welcome";
+import PageProducts from "../pages/PageProducts";
 // import React from "@types/react";
 import React from "react";
 import {Dropdown} from "react-bootstrap";
@@ -21,7 +19,7 @@ function NavBar(){
     return(
         <div>
             <div>
-                <Navbar bg="light" expand="lg">
+                <Navbar bg="light" expand="lg" fixed="top">
                     <Container fluid>
                         <Navbar.Brand href="/Welcome">Welcome</Navbar.Brand>
 
@@ -59,8 +57,7 @@ function NavBar(){
                     <Route exact path='/welcome' element={<Welcome/>} />
                     <Route exact path='/login' element={<Login/>} />
                     <Route path='/pageComponents' element={<PageComponents/>} />
-                    <Route path='/products' element={<Products/>} />
-                    <Route path='/switchCurrency' element={<SwitchCurrency/>} />
+                    <Route path='/products' element={<PageProducts/>} />
                     <Route path='*' element={<NoMatch/>} />
                 </Routes>
             </Router>
