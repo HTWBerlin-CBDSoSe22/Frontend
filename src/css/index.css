@@ -27,11 +27,11 @@ body {
   color: #333;
 }
 
-.App {
+.ShowComponentsDetails {
   font-family: sans-serif;
-  width: 90vw;
+  /*width: 90vw;*/
   margin: 0 auto;
-  padding: 2rem 0;
+  /*padding: 2rem 0;*/
 }
 
 h1 {
@@ -55,4 +55,11 @@ li {
 h3 {
   font-size: 1rem;
   line-height: 1.4;
+}
+
+img {
+  width: 341px;
+  height: 256px;
+  align-self: center;
+  /*margin-top: 2.5rem;*/
 }

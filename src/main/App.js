@@ -4,6 +4,7 @@ import NavBar from '../components/NavBar';
 import GetSomeDate from "../fetch-data/GetSomeDate";
 import axios, {Axios} from "axios";
 import FetchApiData from "../fetch-data/FetchApiData";
+import ShowComponentsDetails from "../fetch-data/ShowComponentsDetails";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {
@@ -35,8 +36,10 @@ function App() {
 
 
         <NavBar />
-        <GetSomeDate />
-        <FetchApiData />
+
+        {/*<GetSomeDate />*/}
+        {/*<FetchApiData />*/}
+        {/*<ShowComponentsDetails />*/}
         {/*<PageComponents/>*/}
 
     </div>
