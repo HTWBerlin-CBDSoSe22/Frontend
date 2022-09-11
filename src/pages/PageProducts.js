@@ -11,7 +11,16 @@ import {Table} from "react-bootstrap";
 
 function PageProducts(){
 
+    // const handleClick = (name, dataIndex) => {
+    //     console.log("hello " + name + index.data)
+    //     // ShowProductDetails.setDataIndex(dataIndex);
+    //     index.changeDataIndex(dataIndex);
+    //     // index.data = dataIndex;
+    // }
+
     const url = 'http://localhost:8088/products';
+
+    // let index = ShowProductDetails();
 
     let request = UseAxiosGet(url)
 
@@ -27,9 +36,7 @@ function PageProducts(){
     }
     if (request.data) {
         content =
-            request.data.map(({
-                name
-            }) => (
+
                 <div>
                     <h1>View & Create Products</h1>
                     <Row>
@@ -45,10 +52,10 @@ function PageProducts(){
                             }}>
                                 <ListGroup variant="flush">
                                     <ListGroup.Item>
-                                        <button type="button" className="btn btn-outline-success">{name}</button>
+                                        <button type="button" className="btn btn-outline-success">{request.data[0].name}</button>
                                     </ListGroup.Item>
                                     <ListGroup.Item>
-                                        <button type="button" className="btn btn-outline-success">{name}</button>
+                                        <button type="button" className="btn btn-outline-success">{request.data[1].name}</button>
                                     </ListGroup.Item>
                                     <ListGroup.Item>
                                         <button type="button" className="btn btn-outline-success">ORANGE</button>
@@ -62,7 +69,7 @@ function PageProducts(){
                     </Row>
                     <PostProduct/>
                 </div>
-            ))}
+            }
 
     return (
 

@@ -2,6 +2,8 @@ import "../css/index.css";
 
 import {Card, Table} from "react-bootstrap";
 import UseAxiosGet from "../hooks/UseAxiosGet";
+import {useState} from "react";
+import ListGroup from "react-bootstrap/ListGroup";
 
 export default function ShowProductDetails() {
     const url = 'http://localhost:8088/products';
@@ -9,6 +11,25 @@ export default function ShowProductDetails() {
     let request = UseAxiosGet(url)
 
     let content = null;
+
+    const [fruitImage, setFruitImage] = useState("fruit_product2.jpeg")
+
+    const [dataIndex, setDataIndex] = useState(1);
+
+    // function changeDataIndex(i) {
+    //     setDataIndex(i)
+    // }
+
+    const handleClick = (name, dataIndex) => {
+        console.log("hello " + name + dataIndex)
+        setDataIndex(dataIndex);
+        if(dataIndex == 0) {
+            setFruitImage("fruits_banner.jpeg")
+        }
+        else if(dataIndex == 1) {
+            setFruitImage("fruit_product2.jpeg")
+        }
+    }
 
     if (request.error) {
         content =
@@ -20,15 +41,17 @@ export default function ShowProductDetails() {
     }
     if (request.data) {
         content =
-            request.data.map(({
-                name, consistsOf
-            }) => (
                 <div>
+                    <button onClick={() => handleClick("mario", 0)} type="button" className="btn btn-outline-success">{request.data[0].name}</button>
+
+                    <button onClick={() => handleClick("luigi", 1)} type="button" className="btn btn-outline-success">{request.data[1].name}</button>
+
+                    <button type="button" className="btn btn-outline-success">ORANGE</button>
                     <h1>Product Details</h1>
                     <div style={{width: '39rem', height: '34.5rem', textAlign: "center", borderRadius: "5px", border: "solid"}}>
                         <Card>
-                            <h2>Product 01</h2>
-                            <img variant="top" src={require("../assets/fruits_banner.jpeg")}/>
+                            <h2>{request.data[dataIndex].name}</h2>
+                            <img variant="top" src={require("../assets/" + fruitImage)}/>
                             <Table style={{marginTop: "1rem"}} striped bordered hover>
                                 <thead>
                                 <tr>
@@ -38,19 +61,23 @@ export default function ShowProductDetails() {
                                 </thead>
                                 <tbody>
                                 <tr>
-                                    <td>name</td>
-                                    <td>{name}</td>
+                                    <td>{request.data[dataIndex].consistsOf[0].name}</td>
+                                    <td>{request.data[dataIndex].consistsOf[0].price}</td>
                                 </tr>
                                 <tr>
-                                    <td>price</td>
-                                    <td>{consistsOf[1].price}</td>
+                                    <td>{request.data[dataIndex].consistsOf[1].name}</td>
+                                    <td>{request.data[dataIndex].consistsOf[1].price}</td>
+                                </tr>
+                                <tr>
+                                    <td>{request.data[dataIndex].consistsOf[2].name}</td>
+                                    <td>{request.data[dataIndex].consistsOf[2].price}</td>
                                 </tr>
                                 </tbody>
                             </Table>
                         </Card>
                     </div>
                 </div>
-            ))}
+            }
 
     return (
 
@@ -84,5 +111,6 @@ export default function ShowProductDetails() {
         //     </ul>
         // </div>
     );
+    return dataIndex;
 }
 
