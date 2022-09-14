@@ -4,7 +4,7 @@ import {Card, Table} from "react-bootstrap";
 import UseAxiosGet from "../hooks/UseAxiosGet";
 
 export default function ShowProductDetails() {
-    const url = 'http://localhost:8088/products';
+    const url = 'http://127.0.0.1:8088/products';
 
     let request = UseAxiosGet(url)
 

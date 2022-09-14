@@ -1,12 +1,10 @@
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
 import Col from "react-bootstrap/Col";
-import CreateProduct from "../fetch-data/CreateProduct";
 import Row from "react-bootstrap/Row";
 import ShowProductDetails from "../fetch-data/ShowProductDetails";
 import PostProduct from "../fetch-data/PostProduct";
 import UseAxiosGet from "../hooks/UseAxiosGet";
-import {Table} from "react-bootstrap";
 
 
 function PageProducts(){
@@ -26,6 +24,7 @@ function PageProducts(){
             <p>A moment please...</p>
     }
     if (request.data) {
+        console.log(request.data);
         content =
             request.data.map(({
                 name
