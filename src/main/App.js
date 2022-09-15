@@ -1,6 +1,6 @@
 import React from 'react';
 import '../css/App.css';
-import NavBar from '../components/NavBar';
+import CustomNavBar from '../components/CustomNavBar';
 import keycloak from "../Keycloak"
 import {ReactKeycloakProvider} from "@react-keycloak/web";
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -9,7 +9,7 @@ function App() {
     return (
         <div>
             <ReactKeycloakProvider authClient={keycloak}>
-                <NavBar/>
+                <CustomNavbar/>
             </ReactKeycloakProvider>
         </div>
     );

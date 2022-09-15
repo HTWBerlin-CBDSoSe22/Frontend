@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import {Card, Table} from "react-bootstrap";
 
-export default function ShowComponentsDetails() {
+export default function ComponentsDetails() {
     const [componentDetails, setComponentDetails] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -21,6 +21,7 @@ export default function ShowComponentsDetails() {
                 setError(null);
             } catch (err) {
                 setError(err.message);
+                console.log(err)
                 setComponentDetails(null);
             } finally {
                 setLoading(false);
@@ -107,7 +108,7 @@ export default function ShowComponentsDetails() {
                     ))}
             </div>
         </div>
-        // <div className="ShowComponentsDetails">
+        // <div className="ComponentsDetails">
         //     <h1>Component Details</h1>
         //     {loading && <div>A moment please...</div>}
         //     {error && (

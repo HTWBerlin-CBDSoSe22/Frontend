@@ -38,7 +38,7 @@ export default function PostProduct(props) {
 
     return (
         <div className="PostProduct">
-            <h1>Created Product Details</h1>
+            <h1>Created Product Details [in progress...]</h1>
             {loading && <div>A moment please...</div>}
             {error && (
                 <div>{`There is a problem fetching the post data - ${error}`}</div>
