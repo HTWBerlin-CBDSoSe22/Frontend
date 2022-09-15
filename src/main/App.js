@@ -9,7 +9,7 @@ function App() {
     return (
         <div>
             <ReactKeycloakProvider authClient={keycloak}>
-                <CustomNavbar/>
+                <CustomNavBar/>
             </ReactKeycloakProvider>
         </div>
     );

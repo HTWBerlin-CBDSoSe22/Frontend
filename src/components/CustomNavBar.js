@@ -1,11 +1,7 @@
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
-import NavDropdown from "react-bootstrap/NavDropdown";
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
-import FormControl from "react-bootstrap/FormControl";
 import Container from "react-bootstrap/Container";
-import {BrowserRouter as Router, Link, Route, Routes} from "react-router-dom";
+import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import PageLogin from "../pages/PageLogin";
 import PageComponents from "../pages/PageComponents";
 import PageNoMatch from "../pages/PageNoMatch";
@@ -42,21 +38,6 @@ function CustomNavBar() {
                                 {keycloak.authenticated && (
                                     <Nav.Link href="/products">Products</Nav.Link>
                                 )}
-                                {keycloak.authenticated && (
-                                    <Nav.Link
-                                        variant={"primary"}
-                                        onClick={() => keycloak.logout()}
-                                    >
-                                        Logout ({keycloak.tokenParsed.preferred_username})
-                                    </Nav.Link>
-                                )}
-                                {!keycloak.authenticated && (
-                                    <Nav.Link variant={"primary"}
-                                              onClick={() => keycloak.login()}
-                                    >Login</Nav.Link>
-                                )}
-                                {/*<Nav.Link href="/switchCurrency">Switch Currency</Nav.Link>*/}
-
                                 <Dropdown>
                                     <Dropdown.Toggle variant="success" id="dropdown-basic">
                                         {currency}
@@ -74,20 +55,33 @@ function CustomNavBar() {
                                         >Swedish Crown</Dropdown.Item>
                                     </Dropdown.Menu>
                                 </Dropdown>
-
+                            </Nav>
+                            <Nav>
+                                {keycloak.authenticated && (
+                                    <Nav.Link
+                                        variant={"primary"}
+                                        onClick={() => keycloak.logout()}
+                                    >
+                                        Logout ({keycloak.tokenParsed.preferred_username})
+                                    </Nav.Link>
+                                )}
+                                {!keycloak.authenticated && (
+                                    <Nav.Link variant={"primary"}
+                                              onClick={() => keycloak.login()}
+                                    >Login</Nav.Link>
+                                )}
                             </Nav>
                         </Navbar.Collapse>
                     </Container>
                 </Navbar>
             </div>
-
             <Router>
                 <Routes>
-                    <Route exact path='/welcome' element={<PageWelcome/>} />
-                    <Route exact path='/login' element={<PageLogin/>} />
-                    <Route path='/components' element={<PageComponents/>} />
-                    <Route path='/products' element={<PageProducts/>} />
-                    <Route path='*' element={<PageNoMatch/>} />
+                    <Route exact path='/welcome' element={<PageWelcome/>}/>
+                    <Route exact path='/login' element={<PageLogin/>}/>
+                    <Route path='/components' element={<PageComponents/>}/>
+                    <Route path='/products' element={<PageProducts/>}/>
+                    <Route path='*' element={<PageNoMatch/>}/>
                 </Routes>
             </Router>
 
