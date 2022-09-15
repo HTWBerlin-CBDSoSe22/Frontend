@@ -19,23 +19,39 @@ function NavBar() {
     function changeCurrency(currency) {
         newCurrency(currency);
     }
+
     return (
         <div>
             <div>
                 <Navbar bg="light" expand="lg" fixed="top">
                     <Container fluid>
                         <Navbar.Brand href="/Welcome">Welcome</Navbar.Brand>
-
                         <Navbar.Collapse id="navbarScroll">
                             <Nav
                                 className="me-auto my-2 my-lg-0"
                                 style={{maxHeight: '100px'}}
                                 navbarScroll
                             >
-                                <Nav.Link href="/pageComponents">Components</Nav.Link>
-                                <Nav.Link href="/products">Products</Nav.Link>
+                                {keycloak.authenticated && (
+                                    <Nav.Link href="/pageComponents">Components</Nav.Link>
+                                )}
+                                {keycloak.authenticated && (
+                                    <Nav.Link href="/products">Products</Nav.Link>
+                                )}
+                                {keycloak.authenticated && (
+                                    <Nav.Link
+                                        variant={"primary"}
+                                        onClick={() => keycloak.logout()}
+                                    >
+                                        Logout ({keycloak.tokenParsed.preferred_username})
+                                    </Nav.Link>
+                                )}
+                                {!keycloak.authenticated && (
+                                    <Nav.Link variant={"primary"}
+                                              onClick={() => keycloak.login()}
+                                    >Login</Nav.Link>
+                                )}
                                 {/*<Nav.Link href="/switchCurrency">Switch Currency</Nav.Link>*/}
-
                                 <Dropdown>
                                     <Dropdown.Toggle variant="success" id="dropdown-basic">
                                         {currency}
@@ -53,19 +69,7 @@ function NavBar() {
                                         >Swedish Crown</Dropdown.Item>
                                     </Dropdown.Menu>
                                 </Dropdown>
-                                {!keycloak.authenticated && (
-                                    <Button variant={"primary"}
-                                            onClick={() => keycloak.login()}
-                                    >Login</Button>
-                                )}
-                                {keycloak.authenticated && (
-                                    <Button
-                                        variant={"primary"}
-                                        onClick={() => keycloak.logout()}
-                                    >
-                                        Logout ({keycloak.tokenParsed.preferred_username})
-                                    </Button>
-                                )}
+
                             </Nav>
                         </Navbar.Collapse>
                     </Container>
