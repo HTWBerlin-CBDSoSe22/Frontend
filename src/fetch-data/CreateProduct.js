@@ -1,33 +1,24 @@
-import {Component} from "react";
+import {Component, useState} from "react";
 // import axios from "axios";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
+import CustomButton from "../components/CustomButton";
 
+function CreateProduct(props) {
 
+    const [postData, setPostData] = useState({
+        // [TEST API POST]
+        // userId: '',
+            // // id: '',
+            // title: '',
+            // body: ''
+        productId: 3,
+        consistsOf: props.consistsOf,
+        name: "krassesProduct8"
+    });
 
-// const api = axios.create({
-//     baseURL: `http://localhost:8080/components`
-// })
-
-class CreateProduct extends Component {
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            userId:'',
-            title:'',
-            body:''
-        }
-    }
-
-    changeHandler = e => {
-        this.setState({ [e.target.name]: e.target.value })
-    }
-
-    submitHandler = e => {
-        e.preventDefault()
-        console.log(this.state)
-        axios.post('localhost:8088/products?newCurrency="?"', this.state)
+    const handleClick = () => {
+        axios.post('http://localhost:8088/products?newCurrency="USD"', postData)
             .then(response => {
                 console.log(response)
             })
@@ -35,41 +26,65 @@ class CreateProduct extends Component {
                 console.log(error)
             })
     }
-    // createProduct = async () => {
-    //     console.log("Product created")
+    // [TEST API POST]
+    // const [contentPostData, setContentPostData] = useState("")
+    //
+    // const changeHandler = (e) => {
+    //     setPostData({...postData, [e.target.name]: e.target.value })
     // }
     //
-    // deleteComponents = async () => {
-    //     // eslint-disable-next-line no-undef
-    //     console.log("Product deleted")
+    // const submitHandler = (e) => {
+    //     e.preventDefault()
+    //     console.log(postData)
+    //     setContentPostData(
+    //         <div>
+    //             <h3>{postData.userId}</h3>
+    //             {/*<h3>{postData.id}</h3>*/}
+    //             <h3>{postData.title}</h3>
+    //             <h3>{postData.body}</h3>
+    //         </div>
+    //     )
+    //     axios.post('https://jsonplaceholder.typicode.com/posts', postData)
+    //         .then(response => {
+    //             console.log(response)
+    //         })
+    //         .catch(error => {
+    //             console.log(error)
+    //         })
     // }
 
-    render(){
-        const { userId, title, body } = this.state
-        return(
-            <div>
-                <form onSubmit={this.submitHandler}>
-                    <div>
-                        <input type="text" name="userId" value={userId} onChange={this.changeHandler}/>
-                    </div>
-                    <div>
-                        <input type="text" name="title" value={title} onChange={this.changeHandler}/>
-                    </div>
-                    <div>
-                        <input type="text" name="body" value={body} onChange={this.changeHandler}/>
-                    </div>
-                    <button type="submit">Submit</button>
-                </form>
+    // [TEST API POST]
+    // const { userId, title, body } = postData;
+    return(
+        <div>
+            <CustomButton buttonClick={() => handleClick()} buttonName={"createProduct"}></CustomButton>
 
-                {/*<button onClick={this.createProduct}>*/}
-                {/*    Create Product*/}
-                {/*</button>*/}
-                {/*<button onClick={this.deleteComponents}>*/}
-                {/*    Delete Product*/}
-                {/*</button>*/}
-            </div>
-        );
-    }
+            {/*[TEST API POST]*/}
+            {/*<form onSubmit={submitHandler}>*/}
+            {/*    <div>*/}
+            {/*        <input type="text" name="userId" value={userId} onChange={changeHandler}/>*/}
+            {/*    </div>*/}
+            {/*    /!*<div>*!/*/}
+            {/*    /!*    <input type="text" name="id" value={id} onChange={changeHandler}/>*!/*/}
+            {/*    /!*</div>*!/*/}
+            {/*    <div>*/}
+            {/*        <input type="text" name="title" value={title} onChange={changeHandler}/>*/}
+            {/*    </div>*/}
+            {/*    <div>*/}
+            {/*        <input type="text" name="body" value={body} onChange={changeHandler}/>*/}
+            {/*    </div>*/}
+            {/*    <button type="submit">Submit</button>*/}
+            {/*    {contentPostData}*/}
+            {/*</form>*/}
+
+            {/*<button onClick={this.createProduct}>*/}
+            {/*    Create Product*/}
+            {/*</button>*/}
+            {/*<button onClick={this.deleteComponents}>*/}
+            {/*    Delete Product*/}
+            {/*</button>*/}
+        </div>
+    );
 }
 
 export default CreateProduct;

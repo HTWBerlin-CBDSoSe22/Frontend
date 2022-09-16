@@ -9,6 +9,7 @@ import UseAxiosGet from "../hooks/UseAxiosGet";
 import {useEffect, useState} from "react";
 import CustomButton from "../components/CustomButton";
 import CustomCard from "../components/CustomCard";
+import CreateProduct from "../fetch-data/CreateProduct";
 
 
 function PageProducts(){
@@ -55,7 +56,7 @@ function PageProducts(){
                             <ProductDetails productId={productIdNumber}/>
                         </Col>
                     </Row>
-                    <PostProduct/>
+                    <CreateProduct/>
                 </div>
             }
 

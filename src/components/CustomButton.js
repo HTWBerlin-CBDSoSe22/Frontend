@@ -3,9 +3,7 @@ import Button from "react-bootstrap/Button";
 
 function CustomButton(props) {
     return (
-        <div>
-            <Button onClick={props.buttonClick} variant="outline-success">{props.buttonName}!!</Button>
-        </div>
+            <Button onClick={props.buttonClick} variant="outline-success" style={props.style}>{props.buttonName}</Button>
     );
 }
 
