@@ -16,6 +16,7 @@ import {useEffect, useState} from "react";
 
 function PageComponents(){
     const [componentId, setComponentId] = useState("1");
+    // const [componentIdListForNewProduct, setComponentIdListForNewProduct] = useState(null);
     // const [aboutNewProduct, setAboutNewProduct] = useState(0);
 
     const showAllComponentsUrl = 'http://localhost:8088/components';
@@ -26,67 +27,51 @@ function PageComponents(){
 
     let componentList = [];
 
+    let selectedComponentList = [];
+
     let componentCountForNewProduct = [];
 
     let componentNameForNewProduct = [];
 
     let componentData = [];
 
-    // let aboutNewProduct = null;
-
-    // useEffect(() => {
-    //     updateNumber();
-    //     console.log("useEffect!!!");
-    // }, [aboutNewProduct])
-    //
-    // const updateNumber = () => {
-    //     return <h3>{aboutNewProduct}</h3>;
-    // }
+    let componentIdListForNewProduct = [];
 
     const handleClick = (id, name) => {
         setComponentId(id)
         console.log("name: " + name);
     }
 
-    const handleAddClick = (id) => {
-        if (componentCountForNewProduct[id] <= 2) {
-            // setAboutNewProduct(allComponentsRequest.data[id].name)
-            componentCountForNewProduct[id]++;
-            console.log(componentCountForNewProduct[id]);
-            componentData.push(allComponentsRequest.data[id]);
-            // aboutNewProduct = componentCountForNewProduct[id];
-            // setAboutNewProduct(componentCountForNewProduct[id])
-            // setAboutNewProduct(aboutNewProduct + 1);
+    const handleSelectClick = (id) => {
+        if (!selectedComponentList[id]) {
+            componentIdListForNewProduct.push(id);
+            selectedComponentList[id] = true;
         }
         else {
-            alert('You can not add more than that.');
+            alert('You already selected the component "' + allComponentsRequest.data[id].name + '"');
         }
-
     }
 
-    const handleRemoveClick = (id) => {
-        if (componentCountForNewProduct[id] >= 1) {
-            componentCountForNewProduct[id]--;
-            console.log(componentCountForNewProduct[id]);
-            // setAboutNewProduct(<h3>{componentCountForNewProduct[id]}</h3>)
-            // setAboutNewProduct(aboutNewProduct - 1);
+    const handleDeselectClick = (id) => {
+        if (selectedComponentList[id]) {
+            selectedComponentList[id] = false;
         }
         else {
-            alert('You can not remove more than that.');
+            alert('The component "' + allComponentsRequest.data[id].name + '" is already deselected.');
         }
-
     }
 
-    const showComponentList = () => {
+    const showAllComponents = () => {
         for (let i = 0; i < allComponentsRequest.data.length; i++) {
             componentCountForNewProduct.push(0);
             componentList.push(
                 <ListGroup.Item>
                     <CustomButton buttonClick={() => handleClick(i, allComponentsRequest.data[i].name)} buttonName={i + ": " + allComponentsRequest.data[i].name}></CustomButton>
-                    <CustomButton buttonClick={() => handleRemoveClick(i)} buttonName={"-"} style={{marginLeft: '80px'}}></CustomButton>
-                    <CustomButton buttonClick={() => handleAddClick(i)} buttonName={"+"} style={{marginLeft: '80px'}}></CustomButton>
+                    <CustomButton buttonClick={() => handleDeselectClick(i)} buttonName={"-"} style={{marginLeft: '80px'}}></CustomButton>
+                    <CustomButton buttonClick={() => handleSelectClick(i)} buttonName={"+"} style={{marginLeft: '80px'}}></CustomButton>
                 </ListGroup.Item>
             )
+            selectedComponentList.push(false);
         }
     }
 
@@ -99,7 +84,7 @@ function PageComponents(){
             <p>A moment please...</p>
     }
     if (allComponentsRequest.data) {
-        showComponentList();
+        showAllComponents();
         content =
 
             <div>
@@ -115,10 +100,18 @@ function PageComponents(){
                         </CustomCard>
                     </Col>
                     <Col>
-                        <ComponentsDetails componentId={componentId}/>
+                        <h3>will work soon...</h3>
+                        <h6>(waiting for product service to be ready)</h6>
+                        {/*<ComponentsDetails componentId={componentId}/>*/}
                     </Col>
                 </Row>
-                <CreateProduct consistsOf={componentData}/>
+                <CustomCardSmall content={
+                    <div>
+                        <CreateProduct consistsOf={componentData} componentIdListForNewProduct={componentIdListForNewProduct}/>
+                    </div>
+                }>
+                </CustomCardSmall>
+
                 {/*{updateNumber()}*/}
             </div>
     }

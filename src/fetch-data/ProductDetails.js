@@ -46,7 +46,7 @@ export default function ProductDetails(props) {
         showProductDetails();
         content =
                 <div>
-                    <h1>Product Details</h1>
+                    <h1>Product Details {props.productId}</h1>
                     <div >
                         <Card style={{
                             width: '39rem',

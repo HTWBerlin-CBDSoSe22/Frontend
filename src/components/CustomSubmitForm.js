@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
+import CustomButton from "./CustomButton";
 
 
-function CustomSubmitForm() {
+function CustomSubmitForm(props) {
     const [name, setName] = useState("");
 
     const handleSubmit = (event) => {
@@ -18,7 +19,7 @@ function CustomSubmitForm() {
                     onChange={(e) => setName(e.target.value)}
                 />
             </label>
-            <input type="submit" />
+            {props.content}
         </form>
     )
 }
