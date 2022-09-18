@@ -12,19 +12,7 @@ function CreateProduct(props) {
     const url = 'http://localhost:8088/products?newCurrency=';
     const urlParam = 'SEK';
     const isMounted = useRef(false);
-    let consistsOfList = [{
-                "componentId": 7,
-                "name": "Cherry",
-                "price": 4.4,
-                "height": 1.5,
-                "weight": 20.0,
-                "color": "red",
-                "countryOfOrigin": "Germany",
-                "grade": "H. extra",
-                "category": "fleshy",
-                "classification": "Pit",
-                "harvestSeason": "summer"
-            }];
+    let consistsOfList = [];
 
     const [postData, setPostData] = useState({
         productId: 0,
@@ -33,6 +21,7 @@ function CreateProduct(props) {
     });
 
     const postRequest = () => {
+        console.log("create list length2: " + props.componentListForNewProduct.length)
         axios.post(url + urlParam, postData)
             .then(response => {
                 console.log("post data worked!")
@@ -46,7 +35,7 @@ function CreateProduct(props) {
 
     useEffect(() => {
         if (isMounted.current) {
-            postRequest();;
+            postRequest();
         } else {
             console.log("first mount")
             isMounted.current = true;
@@ -56,90 +45,13 @@ function CreateProduct(props) {
     const handleClick = (event) => {
         event.preventDefault();
         setPostData({
+            // productId: props.productId,
             productId: 8,
-            consistsOf: consistsOfList,
-            // consistsOf: [
-            //     {
-            //         "componentId": 7,
-            //         "name": "Cherry",
-            //         "price": 0.4,
-            //         "height": 1.5,
-            //         "weight": 20.0,
-            //         "color": "red",
-            //         "countryOfOrigin": "Germany",
-            //         "grade": "H. extra",
-            //         "category": "fleshy",
-            //         "classification": "Pit",
-            //         "harvestSeason": "summer"
-            //     },
-            //     {
-            //         "componentId": 6,
-            //         "name": "Mango",
-            //         "price": 2.0,
-            //         "height": 12.0,
-            //         "weight": 700.0,
-            //         "color": "green",
-            //         "countryOfOrigin": "India",
-            //         "grade": "H. I",
-            //         "category": "fleshy",
-            //         "classification": "Tropical fruit",
-            //         "harvestSeason": "summer"
-            //     },
-            //     {
-            //         "componentId": 4,
-            //         "name": "Strawberry",
-            //         "price": 0.15,
-            //         "height": 2.5,
-            //         "weight": 25.0,
-            //         "color": "red",
-            //         "countryOfOrigin": "Spain",
-            //         "grade": "H. I",
-            //         "category": "fleshy",
-            //         "classification": "Berry",
-            //         "harvestSeason": "summer"
-            //     },
-            //     {
-            //         "componentId": 8,
-            //         "name": "Pineapple",
-            //         "price": 3.0,
-            //         "height": 25.0,
-            //         "weight": 1500.0,
-            //         "color": "yellow",
-            //         "countryOfOrigin": "Ghana",
-            //         "grade": "H. II",
-            //         "category": "dry",
-            //         "classification": "Tropical fruit",
-            //         "harvestSeason": "spring"
-            //     },
-            //     {
-            //         "componentId": 1,
-            //         "name": "Banana",
-            //         "price": 0.75,
-            //         "height": 13.0,
-            //         "weight": 120.0,
-            //         "color": "yellow",
-            //         "countryOfOrigin": "Ecuador",
-            //         "grade": "H. extra",
-            //         "category": "dry",
-            //         "classification": "Tropical fruit",
-            //         "harvestSeason": "winter"
-            //     },
-            //     {
-            //         "componentId": 2,
-            //         "name": "Apple",
-            //         "price": 1.0,
-            //         "height": 7.0,
-            //         "weight": 200.0,
-            //         "color": "green",
-            //         "countryOfOrigin": "Germany",
-            //         "grade": "H. extra",
-            //         "category": "dry",
-            //         "classification": "Core",
-            //         "harvestSeason": "fall"
-            //     }
-            // ],
+            consistsOf: props.componentListForNewProduct,
             name: name
         })
+        setName("");
+        console.log("create list length: " + props.componentListForNewProduct.length)
     }
 
     return(

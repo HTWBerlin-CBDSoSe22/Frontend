@@ -56,7 +56,7 @@ function PageProducts(){
                             <ProductDetails productId={productIdNumber}/>
                         </Col>
                     </Row>
-                    <CreateProduct/>
+                    {/*<CreateProduct/>*/}
                 </div>
             }
 

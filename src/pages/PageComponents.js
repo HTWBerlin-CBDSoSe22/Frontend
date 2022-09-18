@@ -12,12 +12,14 @@ import UseAxiosGet from "../hooks/UseAxiosGet";
 import ProductDetails from "../fetch-data/ProductDetails";
 import CreateProduct from "../fetch-data/CreateProduct";
 import {useEffect, useState} from "react";
+import Component from "../components/Component";
 
 
 function PageComponents(){
     const [componentId, setComponentId] = useState("1");
-    // const [componentIdListForNewProduct, setComponentIdListForNewProduct] = useState(null);
-    // const [aboutNewProduct, setAboutNewProduct] = useState(0);
+    const [componentListForNewProduct, setComponentListForNewProduct] = useState([]);
+    const [selectedComponentList, setSelectedComponentList] = useState([]);
+    const [buttonLabel, setButtonLabel] = useState("SELECT");
 
     const showAllComponentsUrl = 'http://localhost:8088/components';
 
@@ -27,15 +29,9 @@ function PageComponents(){
 
     let componentList = [];
 
-    let selectedComponentList = [];
-
-    let componentCountForNewProduct = [];
-
-    let componentNameForNewProduct = [];
+    let componentButtonsList = []
 
     let componentData = [];
-
-    let componentIdListForNewProduct = [];
 
     const handleClick = (id, name) => {
         setComponentId(id)
@@ -43,35 +39,63 @@ function PageComponents(){
     }
 
     const handleSelectClick = (id) => {
-        if (!selectedComponentList[id]) {
-            componentIdListForNewProduct.push(id);
-            selectedComponentList[id] = true;
+        if (!componentIsSelected(id)) {
+            addComponentsById(id);
+
+            selectComponentsById(id);
         }
         else {
-            alert('You already selected the component "' + allComponentsRequest.data[id].name + '"');
+            alert('You already selected the component "' + componentList[id].name + '"');
         }
     }
 
     const handleDeselectClick = (id) => {
-        if (selectedComponentList[id]) {
-            selectedComponentList[id] = false;
+        if (componentIsSelected(id)) {
+            removeComponentsById(id);
+
+            deselectComponentsById(id)
         }
         else {
-            alert('The component "' + allComponentsRequest.data[id].name + '" is already deselected.');
+            alert('The component "' + componentList[id].name + '" is already deselected.');
         }
     }
 
+    const componentIsSelected = (id) => {
+        for (let i = 0; i < selectedComponentList.length; i++) {
+            if (selectedComponentList[i] === id) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    const addComponentsById = (id) => {
+        setComponentListForNewProduct(current => [...current, componentList[id]]);
+    }
+
+    const removeComponentsById = (id) => {
+        setComponentListForNewProduct(componentListForNewProduct.filter((element) => element !== componentList[id]));
+    }
+
+    const selectComponentsById = (id) => {
+        setButtonLabel("DESELECT");
+        setSelectedComponentList(current => [...current, id]);
+    }
+
+    const deselectComponentsById = (id) => {
+        setButtonLabel("SELECT");
+        setSelectedComponentList(selectedComponentList.filter((element) => element !== id));
+    }
+
     const showAllComponents = () => {
-        for (let i = 0; i < allComponentsRequest.data.length; i++) {
-            componentCountForNewProduct.push(0);
-            componentList.push(
+        for (let i = 0; i < componentList.length; i++) {
+            componentButtonsList.push(
                 <ListGroup.Item>
-                    <CustomButton buttonClick={() => handleClick(i, allComponentsRequest.data[i].name)} buttonName={i + ": " + allComponentsRequest.data[i].name}></CustomButton>
+                    <CustomButton buttonClick={() => handleClick(i, componentList[i].name)} buttonName={i + ": " + componentList[i].name}></CustomButton>
                     <CustomButton buttonClick={() => handleDeselectClick(i)} buttonName={"-"} style={{marginLeft: '80px'}}></CustomButton>
                     <CustomButton buttonClick={() => handleSelectClick(i)} buttonName={"+"} style={{marginLeft: '80px'}}></CustomButton>
                 </ListGroup.Item>
             )
-            selectedComponentList.push(false);
         }
     }
 
@@ -84,6 +108,7 @@ function PageComponents(){
             <p>A moment please...</p>
     }
     if (allComponentsRequest.data) {
+        componentList = allComponentsRequest.data;
         showAllComponents();
         content =
 
@@ -91,10 +116,9 @@ function PageComponents(){
                 <h1>Components</h1>
                 <Row>
                     <Col>
-                        {/*<h1>Products</h1>*/}
                         <CustomCard content={
                             <ListGroup variant="flush">
-                                {componentList}
+                                {componentButtonsList}
                             </ListGroup>
                         }>
                         </CustomCard>
@@ -107,12 +131,10 @@ function PageComponents(){
                 </Row>
                 <CustomCardSmall content={
                     <div>
-                        <CreateProduct consistsOf={componentData} componentIdListForNewProduct={componentIdListForNewProduct}/>
+                        <CreateProduct consistsOf={componentData} componentListForNewProduct={componentListForNewProduct}/>
                     </div>
                 }>
                 </CustomCardSmall>
-
-                {/*{updateNumber()}*/}
             </div>
     }
 
@@ -121,54 +143,6 @@ function PageComponents(){
             {content}
         </div>
     );
-
-    // return(
-    //     <div>
-    //         <Container style={{ margin: '60px'}}>
-    //             <Row>
-    //                 <Col>
-    //                     <h1>Components</h1>
-    //                     <CustomCard content={
-    //                         // <Card.Header>Featured</Card.Header>
-    //                         <ListGroup variant="flush">
-    //                             <ListGroup.Item><CustomButton buttonName={"APPLE"}></CustomButton><CustomButton buttonName={"+"} style={{marginLeft: '80px'}}></CustomButton></ListGroup.Item>
-    //                             <ListGroup.Item><CustomButton buttonName={"BANANA"}></CustomButton><CustomButton buttonName={"+"} style={{marginLeft: '80px'}}></CustomButton></ListGroup.Item>
-    //                             <ListGroup.Item><CustomButton buttonName={"ORANGE"}></CustomButton><CustomButton buttonName={"+"} style={{marginLeft: '80px'}}></CustomButton></ListGroup.Item>
-    //                             <ListGroup.Item><CustomButton buttonName={"STRAWBERRY"}></CustomButton><CustomButton buttonName={"+"} style={{marginLeft: '80px'}}></CustomButton></ListGroup.Item>
-    //                             <ListGroup.Item><CustomButton buttonName={"BLUEBERRY"}></CustomButton><CustomButton buttonName={"+"} style={{marginLeft: '80px'}}></CustomButton></ListGroup.Item>
-    //                             <ListGroup.Item><CustomButton buttonName={"MANGO"}></CustomButton><CustomButton buttonName={"+"} style={{marginLeft: '80px'}}></CustomButton></ListGroup.Item>
-    //                             <ListGroup.Item><CustomButton buttonName={"CHERRY"}></CustomButton><CustomButton buttonName={"+"} style={{marginLeft: '80px'}}></CustomButton></ListGroup.Item>
-    //                             <ListGroup.Item><CustomButton buttonName={"PINEAPPLE"}></CustomButton><CustomButton buttonName={"+"} style={{marginLeft: '80px'}}></CustomButton></ListGroup.Item>
-    //                             <ListGroup.Item><CustomButton buttonName={"GRAPE"}></CustomButton><CustomButton buttonName={"+"} style={{marginLeft: '80px'}}></CustomButton></ListGroup.Item>
-    //                             <ListGroup.Item><CustomButton buttonName={"SOME FRUIT"}></CustomButton><CustomButton buttonName={"+"} style={{marginLeft: '80px'}}></CustomButton></ListGroup.Item>
-    //
-    //                             {/*<ListGroup.Item><button type="button" class="btn btn-outline-success">BANANA</button></ListGroup.Item>*/}
-    //                             {/*<ListGroup.Item><button type="button" class="btn btn-outline-success">ORANGE</button></ListGroup.Item>*/}
-    //                             {/*<ListGroup.Item><button type="button" class="btn btn-outline-success">STRAWBERRY</button></ListGroup.Item>*/}
-    //                             {/*<ListGroup.Item><button type="button" class="btn btn-outline-success">BLUEBERRY</button></ListGroup.Item>*/}
-    //                             {/*<ListGroup.Item><button type="button" class="btn btn-outline-success">MANGO</button></ListGroup.Item>*/}
-    //                             {/*<ListGroup.Item><button type="button" class="btn btn-outline-success">CHERRY</button></ListGroup.Item>*/}
-    //                             {/*<ListGroup.Item><button type="button" class="btn btn-outline-success">PINEAPPLE</button></ListGroup.Item>*/}
-    //                             {/*<ListGroup.Item><button type="button" class="btn btn-outline-success">GRAPE</button></ListGroup.Item>*/}
-    //                             {/*<ListGroup.Item><button type="button" class="btn btn-outline-success">SOME FRUIT</button></ListGroup.Item>*/}
-    //                         </ListGroup>
-    //                     }>
-    //                     </CustomCard>
-    //                 </Col>
-    //                 <Col>
-    //                     <ComponentsDetails />
-    //                 </Col>
-    //             </Row>
-    //             <CustomCardSmall content={
-    //                 <div>
-    //                     <CustomSubmitForm></CustomSubmitForm>
-    //                     <CustomButton buttonName={"Create Product"}></CustomButton>
-    //                 </div>
-    //             }>
-    //             </CustomCardSmall>
-    //         </Container>
-    //     </div>
-    // );
 }
 
 export default PageComponents;
