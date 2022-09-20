@@ -6,7 +6,9 @@ import {useState} from "react";
 import React from 'react';
 
 export default function ProductDetails(props) {
-    const url = 'http://localhost:8088/products/' + props.productId;
+    let params = props.selectedCurrency;
+
+    const url = 'http://localhost:8088/products/' + props.productId + "?newCurrency=" + params;
 
     let request = UseAxiosGet(url)
 

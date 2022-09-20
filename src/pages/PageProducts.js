@@ -12,7 +12,7 @@ import CustomCard from "../components/CustomCard";
 import CreateProduct from "../fetch-data/CreateProduct";
 
 
-function PageProducts(){
+function PageProducts(props){
     const [productIdNumber, setProductIdNumber] = useState("1");
 
     const handleClick = (productId) => {
@@ -53,7 +53,7 @@ function PageProducts(){
                             </CustomCard>
                         </Col>
                         <Col>
-                            <ProductDetails productId={productIdNumber}/>
+                            <ProductDetails productId={productIdNumber} selectedCurrency={props.selectedCurrency}/>
                         </Col>
                     </Row>
                     {/*<CreateProduct/>*/}

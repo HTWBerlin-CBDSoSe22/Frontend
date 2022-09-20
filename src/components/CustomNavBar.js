@@ -79,8 +79,8 @@ function CustomNavBar() {
                 <Routes>
                     <Route exact path='/welcome' element={<PageWelcome/>}/>
                     <Route exact path='/login' element={<PageLogin/>}/>
-                    <Route path='/components' element={<PageComponents/>}/>
-                    <Route path='/products' element={<PageProducts/>}/>
+                    <Route path='/components' element={<PageComponents selectedCurrency={currency}/>}/>
+                    <Route path='/products' element={<PageProducts selectedCurrency={currency}/>}/>
                     <Route path='*' element={<PageNoMatch/>}/>
                 </Routes>
             </Router>

@@ -10,7 +10,7 @@ import UseAxiosGet from "../hooks/UseAxiosGet";
 function CreateProduct(props) {
     const [name, setName] = useState("");
     const url = 'http://localhost:8088/products?newCurrency=';
-    const urlParam = 'SEK';
+    const urlParam = props.selectedCurrency;
     const isMounted = useRef(false);
     let consistsOfList = [];
 

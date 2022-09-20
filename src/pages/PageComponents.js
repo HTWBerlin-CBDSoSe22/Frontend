@@ -15,7 +15,7 @@ import {useEffect, useState} from "react";
 import Component from "../components/Component";
 
 
-function PageComponents(){
+function PageComponents(props){
     const [componentId, setComponentId] = useState("1");
     const [componentListForNewProduct, setComponentListForNewProduct] = useState([]);
     const [selectedComponentList, setSelectedComponentList] = useState([]);
@@ -131,7 +131,7 @@ function PageComponents(){
                 </Row>
                 <CustomCardSmall content={
                     <div>
-                        <CreateProduct consistsOf={componentData} componentListForNewProduct={componentListForNewProduct}/>
+                        <CreateProduct consistsOf={componentData} componentListForNewProduct={componentListForNewProduct} selectedCurrency={props.selectedCurrency}/>
                     </div>
                 }>
                 </CustomCardSmall>
