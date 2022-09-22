@@ -20,10 +20,10 @@ function CustomNavBar() {
     }
 
     return (
-        <div>
+        <div >
             <div>
-                <Navbar bg="light" expand="lg" fixed="top">
-                    <Container fluid>
+                <Navbar bg="dark" expand="lg" fixed="top">
+                    <Container style={{marginLeft: "7px", marginRight: "7px", backgroundColor: "coral", border: "solid 3px brown", borderRadius: "15px"}} fluid>
                         <Navbar.Brand href="/welcome">Welcome</Navbar.Brand>
 
                         <Navbar.Collapse id="navbarScroll">
@@ -38,7 +38,7 @@ function CustomNavBar() {
                                 {keycloak.authenticated && (
                                     <Nav.Link href="/products">Products</Nav.Link>
                                 )}
-                                <Dropdown>
+                                <Dropdown style={{margin: "5px"}}>
                                     <Dropdown.Toggle variant="success" id="dropdown-basic">
                                         {currency}
                                     </Dropdown.Toggle>

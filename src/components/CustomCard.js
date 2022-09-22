@@ -5,12 +5,12 @@ function CustomCard(props) {
     return (
         <div>
             <Card style={{
-                width: '39rem',
+                width: '33rem',
                 height: '34.5rem',
                 textAlign: "center",
-                letterSpacing: "10px",
-                borderRadius: "5px",
-                border: "solid"
+                // letterSpacing: "10px",
+                borderRadius: "15px",
+                border: "solid 3px royalblue"
             }}>
                 {props.content}
             </Card>

@@ -14,6 +14,8 @@ function CreateProduct(props) {
     const isMounted = useRef(false);
     let consistsOfList = [];
 
+    const[createProductStatus, setCreateProductStatus] = useState("...");
+
     const [postData, setPostData] = useState({
         productId: 0,
         consistsOf: [],
@@ -25,12 +27,21 @@ function CreateProduct(props) {
         axios.post(url + urlParam, postData)
             .then(response => {
                 console.log("post data worked!")
+                adjustCreateProductStatus("CREATED!");
                 console.log(response)
             })
             .catch(error => {
                 console.log("post data failed!");
+                adjustCreateProductStatus("create failed");
                 console.log(error)
             })
+    }
+
+    const adjustCreateProductStatus = (productStatus) => {
+        setCreateProductStatus(productStatus);
+        setTimeout(() => {
+            setCreateProductStatus("creating...");
+        }, 3500);
     }
 
     useEffect(() => {
@@ -66,6 +77,7 @@ function CreateProduct(props) {
                     />
                 </label>
                 <CustomButton type="submit" buttonName={"createProduct"}/>
+                <h2>Status: {createProductStatus}</h2>
             </form>
         </div>
     );

@@ -37,12 +37,12 @@ function PageProducts(props){
         content =
 
                 <div>
-                    <h1>View & Create Products</h1>
+                    {/*<h1>View & Create Products</h1>*/}
                     <Row>
                         <Col>
-                            <h1>Products</h1>
+                            <h1 style={{marginLeft: "165px", textAlign: "center", width: "12rem", backgroundColor: "white", border: "solid 3px black", borderRadius: "8px"}}>Products</h1>
                             <CustomCard content={
-                                <ListGroup variant="flush">
+                                <ListGroup style={{padding: "10px 20px 10px 20px"}} variant="flush">
                                     {allProductsRequest.data.map(({id, name}) =>
                                         <ListGroup.Item>
                                             <CustomButton buttonClick={() => handleClick(id)} buttonName={id + ": " + name}></CustomButton>

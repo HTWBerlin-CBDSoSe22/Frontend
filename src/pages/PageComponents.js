@@ -19,7 +19,9 @@ function PageComponents(props){
     const [componentId, setComponentId] = useState("1");
     const [componentListForNewProduct, setComponentListForNewProduct] = useState([]);
     const [selectedComponentList, setSelectedComponentList] = useState([]);
-    const [buttonLabel, setButtonLabel] = useState("SELECT");
+    const [selectedComponents, setSelectedComponents] = useState([]);
+
+    const [buttonLabelList, setButtonLabelList] = useState([]);
 
     const showAllComponentsUrl = 'http://localhost:8088/components';
 
@@ -38,14 +40,23 @@ function PageComponents(props){
         console.log("name: " + name);
     }
 
-    const handleSelectClick = (id) => {
+    const handleSelectClick = (id, event) => {
         if (!componentIsSelected(id)) {
             addComponentsById(id);
+            event.currentTarget.style.backgroundColor = 'crimson';
+            event.currentTarget.style.color='white'
+            event.currentTarget.textContent="DESELECT";
 
             selectComponentsById(id);
         }
         else {
-            alert('You already selected the component "' + componentList[id].name + '"');
+            // alert('You already selected the component "' + componentList[id].name + '"');
+            removeComponentsById(id);
+
+            deselectComponentsById(id)
+            event.currentTarget.style.backgroundColor = 'white';
+            event.currentTarget.style.color='green'
+            event.currentTarget.textContent="SELECT";
         }
     }
 
@@ -78,22 +89,26 @@ function PageComponents(props){
     }
 
     const selectComponentsById = (id) => {
-        setButtonLabel("DESELECT");
+        // setButtonLabel("DESELECT");
+        // setSelectedComponents(current => [...current, componentList[id].name]);
         setSelectedComponentList(current => [...current, id]);
     }
 
     const deselectComponentsById = (id) => {
-        setButtonLabel("SELECT");
+        // setButtonLabel("SELECT");
+        // setSelectedComponents(selectedComponents.filter((element) => element !== selectedComponents[id]));
         setSelectedComponentList(selectedComponentList.filter((element) => element !== id));
     }
 
     const showAllComponents = () => {
         for (let i = 0; i < componentList.length; i++) {
+            // setButtonLabelList(current => [...current, "SELECTED"]);
             componentButtonsList.push(
                 <ListGroup.Item>
                     <CustomButton buttonClick={() => handleClick(i, componentList[i].name)} buttonName={i + ": " + componentList[i].name}></CustomButton>
-                    <CustomButton buttonClick={() => handleDeselectClick(i)} buttonName={"-"} style={{marginLeft: '80px'}}></CustomButton>
-                    <CustomButton buttonClick={() => handleSelectClick(i)} buttonName={"+"} style={{marginLeft: '80px'}}></CustomButton>
+                    {/*<CustomButton buttonClick={() => handleDeselectClick(i)} buttonName={"-"} style={{marginLeft: '80px'}}></CustomButton>*/}
+                    <CustomButton buttonClick={(e) => handleSelectClick(i, e)} buttonName={"SELECT"} style={{marginLeft: '80px'}}></CustomButton>
+                    {/*<CustomButton buttonClick={() => handleSelectClick(i)} buttonName={buttonLabelList[i]} style={{marginLeft: '80px'}}></CustomButton>*/}
                 </ListGroup.Item>
             )
         }
@@ -131,6 +146,7 @@ function PageComponents(props){
                 </Row>
                 <CustomCardSmall content={
                     <div>
+                        {selectedComponents}
                         <CreateProduct consistsOf={componentData} componentListForNewProduct={componentListForNewProduct} selectedCurrency={props.selectedCurrency}/>
                     </div>
                 }>

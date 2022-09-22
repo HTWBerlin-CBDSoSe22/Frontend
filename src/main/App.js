@@ -7,7 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
     return (
-        <div>
+        <div style={{margin: "90px 20px 20px 20px", padding: "30px", paddingLeft: "90px", paddingRight: "90px", backgroundColor:"cornflowerblue", border: "solid 3px black", borderRadius: "30px"}}>
             <ReactKeycloakProvider authClient={keycloak}>
                 <CustomNavBar/>
             </ReactKeycloakProvider>
