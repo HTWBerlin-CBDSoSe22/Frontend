@@ -15,7 +15,7 @@ import {useEffect, useState} from "react";
 import Component from "../components/Component";
 
 
-function PageComponents(props){
+function PageComponents(props) {
     const [componentId, setComponentId] = useState("1");
     const [componentListForNewProduct, setComponentListForNewProduct] = useState([]);
     const [selectedComponentList, setSelectedComponentList] = useState([]);
@@ -36,7 +36,7 @@ function PageComponents(props){
     let componentData = [];
 
     const handleClick = (id, name) => {
-        setComponentId(id)
+        setComponentId(id + 1)
         console.log("name: " + name);
     }
 
@@ -44,19 +44,18 @@ function PageComponents(props){
         if (!componentIsSelected(id)) {
             addComponentsById(id);
             event.currentTarget.style.backgroundColor = 'crimson';
-            event.currentTarget.style.color='white'
-            event.currentTarget.textContent="DESELECT";
+            event.currentTarget.style.color = 'white'
+            event.currentTarget.textContent = "DESELECT";
 
             selectComponentsById(id);
-        }
-        else {
+        } else {
             // alert('You already selected the component "' + componentList[id].name + '"');
             removeComponentsById(id);
 
             deselectComponentsById(id)
             event.currentTarget.style.backgroundColor = 'white';
-            event.currentTarget.style.color='green'
-            event.currentTarget.textContent="SELECT";
+            event.currentTarget.style.color = 'green'
+            event.currentTarget.textContent = "SELECT";
         }
     }
 
@@ -65,8 +64,7 @@ function PageComponents(props){
             removeComponentsById(id);
 
             deselectComponentsById(id)
-        }
-        else {
+        } else {
             alert('The component "' + componentList[id].name + '" is already deselected.');
         }
     }
@@ -105,9 +103,12 @@ function PageComponents(props){
             // setButtonLabelList(current => [...current, "SELECTED"]);
             componentButtonsList.push(
                 <ListGroup.Item key={i}>
-                    <CustomButton buttonClick={() => handleClick(i, componentList[i].name)} buttonName={i + ": " + componentList[i].name}></CustomButton>
+                    <CustomButton buttonClick={() => handleClick(i, componentList[i].name)}
+                                  buttonName={i + 1 + ": " + componentList[i].name}
+                    ></CustomButton>
                     {/*<CustomButton buttonClick={() => handleDeselectClick(i)} buttonName={"-"} style={{marginLeft: '80px'}}></CustomButton>*/}
-                    <CustomButton buttonClick={(e) => handleSelectClick(i, e)} buttonName={"SELECT"} style={{marginLeft: '80px'}}></CustomButton>
+                    <CustomButton buttonClick={(e) => handleSelectClick(i, e)}
+                                  buttonName={"SELECT"} style={{marginLeft: '80px'}}></CustomButton>
                     {/*<CustomButton buttonClick={() => handleSelectClick(i)} buttonName={buttonLabelList[i]} style={{marginLeft: '80px'}}></CustomButton>*/}
                 </ListGroup.Item>
             )
@@ -128,9 +129,18 @@ function PageComponents(props){
         content =
 
             <div>
-                <h1>Components</h1>
                 <Row>
                     <Col>
+                        <h1>Components</h1>
+                        <CustomCardSmall content={
+                            <div>
+                                {selectedComponents}
+                                <CreateProduct consistsOf={componentData}
+                                               componentListForNewProduct={componentListForNewProduct}
+                                               selectedCurrency={props.selectedCurrency}/>
+                            </div>
+                        }>
+                        </CustomCardSmall>
                         <CustomCard content={
                             <ListGroup variant="flush">
                                 {componentButtonsList}
@@ -139,18 +149,12 @@ function PageComponents(props){
                         </CustomCard>
                     </Col>
                     <Col>
-                        <h3>will work soon...</h3>
-                        <h6>(waiting for product service to be ready)</h6>
-                        {/*<ComponentsDetails componentId={componentId}/>*/}
+                        {/*<h3>will work soon...</h3>*/}
+                        {/*<h6>(waiting for product service to be ready)</h6>*/}
+                        <ComponentsDetails componentId={componentId}/>
                     </Col>
                 </Row>
-                <CustomCardSmall content={
-                    <div>
-                        {selectedComponents}
-                        <CreateProduct consistsOf={componentData} componentListForNewProduct={componentListForNewProduct} selectedCurrency={props.selectedCurrency}/>
-                    </div>
-                }>
-                </CustomCardSmall>
+
             </div>
     }
 

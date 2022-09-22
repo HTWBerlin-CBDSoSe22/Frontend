@@ -53,7 +53,7 @@ export default function ProductDetails(props) {
                     <div>
                         <CustomCard content={
                             <div>
-                                <h2>{request.data.name} {props.productId}</h2>
+                                <h2>{request.data.name}</h2>
                                 <img variant="top" src={require("../assets/" + fruitImage)}/>
                                 <Table style={{marginTop: "1rem"}} striped bordered hover>
                                     <thead>
@@ -69,11 +69,12 @@ export default function ProductDetails(props) {
                             </div>
                         }>
                         </CustomCard>
+                        <div style={{position:'relative'}}>
                         <h3 style={{textAlign: "center", marginLeft: "20rem", marginRight:"5.2rem", borderRadius: "7px",
                             border: "solid", borderWidth: "2px", borderColor: "crimson", backgroundColor: "white"}}>
-                            <strong>Total Price: {request.data.price + " " + request.data.currency}</strong>
+                            <strong>Total Price: {request.data.price.toFixed(2) + " " + request.data.currency}</strong>
                         </h3>
-
+                        </div>
                     </div>
                 </div>
             }

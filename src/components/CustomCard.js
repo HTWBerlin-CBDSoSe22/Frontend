@@ -6,7 +6,6 @@ function CustomCard(props) {
         <div>
             <Card style={{
                 width: '33rem',
-                height: '34.5rem',
                 textAlign: "center",
                 // letterSpacing: "10px",
                 borderRadius: "15px",

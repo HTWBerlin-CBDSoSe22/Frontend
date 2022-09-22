@@ -5,8 +5,8 @@ function CustomCardSmall(props) {
     return (
         <div>
             <Card style={{
-                width: '39rem',
-                height: '4.5rem',
+                width: '33rem',
+                height: '6rem',
                 textAlign: "center",
                 letterSpacing: "10px",
                 borderRadius: "5px",

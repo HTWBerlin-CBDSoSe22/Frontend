@@ -53,6 +53,14 @@ function CustomNavBar() {
                                         <Dropdown.Item
                                             onClick={() => changeCurrency('SEK')}
                                         >Swedish Crown</Dropdown.Item>
+                                        <Dropdown.Item
+                                            onClick={() => changeCurrency('GBP')}
+                                        >Pound</Dropdown.Item>
+                                        <Dropdown.Item
+                                            onClick={() => changeCurrency('CHF')}
+                                        >
+                                        Swiss Franc
+                                        </Dropdown.Item>
                                     </Dropdown.Menu>
                                 </Dropdown>
                             </Nav>

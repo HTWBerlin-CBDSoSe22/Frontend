@@ -6,6 +6,7 @@ import CustomButton from "../components/CustomButton";
 import CustomSubmitForm from "../components/CustomSubmitForm";
 import alert from "bootstrap/js/src/alert";
 import UseAxiosGet from "../hooks/UseAxiosGet";
+import {InputGroup} from "react-bootstrap";
 
 function CreateProduct(props) {
     const [name, setName] = useState("");
@@ -66,18 +67,18 @@ function CreateProduct(props) {
     }
 
     return(
-        <div>
+        <div style={{marginTop: '5%'}}>
             {/*{content}*/}
             <form onSubmit={handleClick}>
-                <label>Enter your name:
                     <input
                         type="text"
                         value={name}
+                        placeholder="Product Name"
                         onChange={(e) => setName(e.target.value)}
                     />
-                </label>
-                <CustomButton type="submit" buttonName={"createProduct"}/>
-                <h2>Status: {createProductStatus}</h2>
+                <CustomButton type="submit"
+                              buttonName={"createProduct"}
+                />
             </form>
         </div>
     );

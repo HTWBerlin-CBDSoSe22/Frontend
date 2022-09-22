@@ -79,7 +79,8 @@ export default function ComponentsDetails(props) {
                         <div>
                             <h2>Component 01</h2>
                             <img variant="top" src={require("../assets/fruits_banner.jpeg")}/>
-                            <Table style={{marginTop: "1rem"}} striped bordered hover>
+                            <Table responsive
+                                   style={{marginTop: "1rem"}} striped bordered hover>
                                 <thead>
                                 <tr>
                                     <th style={{width: "200px"}}>Name</th>
