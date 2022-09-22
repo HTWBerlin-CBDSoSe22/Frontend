@@ -16,7 +16,7 @@ function PageProducts(props){
     const [productIdNumber, setProductIdNumber] = useState("1");
 
     const handleClick = (productId) => {
-        setProductIdNumber(productId - 1);
+        setProductIdNumber(productId);
     }
 
     const showAllProductsUrl = 'http://localhost:8088/products';
@@ -43,9 +43,9 @@ function PageProducts(props){
                             <h1 style={{marginLeft: "165px", textAlign: "center", width: "12rem", backgroundColor: "white", border: "solid 3px black", borderRadius: "8px"}}>Products</h1>
                             <CustomCard content={
                                 <ListGroup style={{padding: "10px 20px 10px 20px"}} variant="flush">
-                                    {allProductsRequest.data.map(({id, name}) =>
-                                        <ListGroup.Item>
-                                            <CustomButton buttonClick={() => handleClick(id)} buttonName={id + ": " + name}></CustomButton>
+                                    {allProductsRequest.data.map(({productId, name}) =>
+                                        <ListGroup.Item key={productId}>
+                                            <CustomButton buttonClick={() => handleClick(productId)} buttonName={productId + ": " + name}></CustomButton>
                                         </ListGroup.Item>
                                     )}
                                 </ListGroup>

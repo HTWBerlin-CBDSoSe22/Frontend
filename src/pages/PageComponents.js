@@ -104,7 +104,7 @@ function PageComponents(props){
         for (let i = 0; i < componentList.length; i++) {
             // setButtonLabelList(current => [...current, "SELECTED"]);
             componentButtonsList.push(
-                <ListGroup.Item>
+                <ListGroup.Item key={i}>
                     <CustomButton buttonClick={() => handleClick(i, componentList[i].name)} buttonName={i + ": " + componentList[i].name}></CustomButton>
                     {/*<CustomButton buttonClick={() => handleDeselectClick(i)} buttonName={"-"} style={{marginLeft: '80px'}}></CustomButton>*/}
                     <CustomButton buttonClick={(e) => handleSelectClick(i, e)} buttonName={"SELECT"} style={{marginLeft: '80px'}}></CustomButton>
