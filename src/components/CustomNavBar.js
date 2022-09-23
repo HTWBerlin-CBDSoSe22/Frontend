@@ -22,27 +22,24 @@ function CustomNavBar() {
     return (
         <div >
             <div>
-                <Navbar bg="dark" expand="lg" fixed="top">
-                    <Container style={{marginLeft: "7px", marginRight: "7px", backgroundColor: "coral", border: "solid 3px brown", borderRadius: "15px"}} fluid>
-                        <Navbar.Brand href="/welcome">Welcome</Navbar.Brand>
-
+                <Navbar bg="dark" variant="dark" expand="lg" fixed="top">
+                    <Container fluid>
+                        <Navbar.Brand style={{fontSize: '1.5em'}} href="/welcome">Home</Navbar.Brand>
                         <Navbar.Collapse id="navbarScroll">
                             <Nav
                                 className="me-auto my-2 my-lg-0"
-                                style={{maxHeight: '100px'}}
                                 navbarScroll
                             >
                                 {keycloak.authenticated && (
-                                    <Nav.Link href="/components">Components</Nav.Link>
+                                    <Nav.Link style={{marginTop: '2%'}} href="/components">Components</Nav.Link>
                                 )}
                                 {keycloak.authenticated && (
-                                    <Nav.Link href="/products">Products</Nav.Link>
+                                    <Nav.Link style={{marginTop: '2%'}} href="/products">Products</Nav.Link>
                                 )}
                                 <Dropdown style={{margin: "5px"}}>
-                                    <Dropdown.Toggle variant="success" id="dropdown-basic">
+                                    <Dropdown.Toggle variant="outline-light" id="dropdown-basic">
                                         {currency}
                                     </Dropdown.Toggle>
-
                                     <Dropdown.Menu>
                                         <Dropdown.Item
                                             onClick={() => changeCurrency('EUR')}
