@@ -15,7 +15,7 @@ export default function ComponentsDetails(props) {
 
     const showComponentDetails = () => {
         componentDetails.push(
-            <div>
+            <tbody>
                 <tr>
                     <td>name</td>
                     <td>{request.data.name}</td>
@@ -56,7 +56,7 @@ export default function ComponentsDetails(props) {
                     <td>harvest season</td>
                     <td>{request.data.harvestSeason}</td>
                 </tr>
-            </div>
+            </tbody>
         )
     }
 
@@ -87,14 +87,13 @@ export default function ComponentsDetails(props) {
                                     <th>Description</th>
                                 </tr>
                                 </thead>
-                                <tbody>
+
                                     {componentDetails}
-                                </tbody>
+
                             </Table>
                         </div>
                     }>
                     </CustomCard>
-                    ))}
                 </div>
             </div>
     }

@@ -11,7 +11,7 @@ function App() {
         silentCheckSsoRedirectUri: window.location.origin + '/silent-check-sso.html'
     };
     return (
-        <div style={{margin: "90px 20px 20px 20px", padding: "30px", paddingLeft: "90px", paddingRight: "90px", backgroundColor:"cornflowerblue", border: "solid 3px black", borderRadius: "30px"}}>
+        <div style={{margin: "90px 20px 20px 20px", padding: "30px", paddingLeft: "90px", paddingRight: "90px", backgroundColor: "#F6FFE4", border: "solid 3px black", borderRadius: "30px"}}>
             <ReactKeycloakProvider authClient={keycloak}
                                    initOptions={initOptions}
             >
