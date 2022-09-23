@@ -17,7 +17,7 @@ export default function ProductDetails(props) {
 
     let productDetails = [];
 
-    const [fruitImage, setFruitImage] = useState("fruit_product2.jpeg")
+    const [fruitImage, setFruitImage] = useState("fruits_banner.jpeg")
 
     const showProductDetails = () => {
         for (let i = 0; i < request.data.consistsOf.length; i++) {
@@ -53,8 +53,12 @@ export default function ProductDetails(props) {
                     <div>
                         <CustomCard content={
                             <div>
-                                <h2>{request.data.name}</h2>
-                                <img variant="top" src={require("../assets/" + fruitImage)}/>
+                                <h2 style={{
+                                    display: "block",
+                                    margin: "5px auto 5px auto", width: "20rem", borderRadius: "15px",
+                                    border: "solid 1px #324E01"}}>{request.data.name}</h2>
+                                <img style={{borderRadius: "15px",
+                                    border: "solid 1px #324E01"}} variant="top" src={require("../assets/" + fruitImage)}/>
                                 <Table style={{marginTop: "1rem"}} striped bordered hover>
                                     <thead>
                                         <tr>
@@ -69,8 +73,8 @@ export default function ProductDetails(props) {
                             </div>
                         }>
                         </CustomCard>
-                        <div style={{position:'relative'}}>
-                        <h3 style={{textAlign: "center", marginLeft: "20rem", marginRight:"5.2rem", borderRadius: "7px",
+                        <div style={{display: "block"}}>
+                        <h3 style={{textAlign: "center", margin: "8px 7rem 5px 3rem", borderRadius: "7px",
                             border: "solid", borderWidth: "2px", borderColor: "crimson", backgroundColor: "white"}}>
                             <strong>Total Price: {request.data.price.toFixed(2) + " " + request.data.currency}</strong>
                         </h3>

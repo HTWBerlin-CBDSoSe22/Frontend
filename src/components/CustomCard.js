@@ -9,7 +9,7 @@ function CustomCard(props) {
                 textAlign: "center",
                 // letterSpacing: "10px",
                 borderRadius: "15px",
-                border: "solid 3px royalblue"
+                border: "solid 3px #324E01"
             }}>
                 {props.content}
             </Card>
