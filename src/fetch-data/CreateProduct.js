@@ -86,7 +86,7 @@ function CreateProduct(props) {
                 <CustomButton
                     type="submit"
                     disabled={buttonStatus}
-                    buttonName={"createProduct"}
+                    buttonName={"Create Product"}
                 />
                 <Overlay target={target.current} show={createProductStatus} placement="top-end">
                     {(props) => (

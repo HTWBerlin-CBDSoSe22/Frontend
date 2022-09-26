@@ -31,12 +31,12 @@ function CustomNavBar() {
                                 className="me-auto my-2 my-lg-0"
                                 navbarScroll
                             >
-                                {/*{keycloak.authenticated && (*/}
+                                {keycloak.authenticated && (
                                     <Link style={{margin: '5.5% 6px 0px 6px', textDecoration: 'none', color: 'white'}} class="cypressComponent" to="/components">Components</Link>
-                                {/*)}*/}
-                                {/*{keycloak.authenticated && (*/}
+                                )}
+                                {keycloak.authenticated && (
                                     <Link style={{margin: '5.5% 6px 0px 6px', textDecoration: 'none', color: 'white'}} class="cypressProducts" to="/products">Products</Link>
-                                {/*)}*/}
+                                )}
                                 <Dropdown style={{margin: "5px"}}>
                                     <Dropdown.Toggle variant="outline-light" id="dropdown-basic">
                                         {currency}
