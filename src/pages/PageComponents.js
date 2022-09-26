@@ -128,10 +128,10 @@ function PageComponents(props) {
         showAllComponents();
         content =
 
-            <div>
+            <div style={{marginLeft: "2rem"}}>
                 <Row>
                     <Col>
-                        <h1>Components</h1>
+                        <h1 style={{marginLeft: "133px", textAlign: "center", width: "16rem", backgroundColor: "white", border: "solid 3px black", borderRadius: "8px"}}>Components</h1>
                         <CustomCardSmall content={
                             <div>
                                 {selectedComponents}
@@ -142,7 +142,7 @@ function PageComponents(props) {
                         }>
                         </CustomCardSmall>
                         <CustomCard content={
-                            <ListGroup variant="flush">
+                            <ListGroup style={{padding: "10px 20px 10px 20px"}} variant="flush">
                                 {componentButtonsList}
                             </ListGroup>
                         }>

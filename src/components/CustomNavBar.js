@@ -1,7 +1,7 @@
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import Container from "react-bootstrap/Container";
-import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
+import {BrowserRouter as Router, Link, Route, Routes} from "react-router-dom";
 import PageLogin from "../pages/PageLogin";
 import PageComponents from "../pages/PageComponents";
 import PageNoMatch from "../pages/PageNoMatch";
@@ -21,21 +21,22 @@ function CustomNavBar() {
 
     return (
         <div >
+            <Router>
             <div>
                 <Navbar bg="dark" variant="dark" expand="lg" fixed="top">
                     <Container fluid>
-                        <Navbar.Brand style={{fontSize: '1.5em'}} href="/welcome">Home</Navbar.Brand>
+                        <Link style={{margin: '0px 6px 0px 6px', fontSize: '1.5em', textDecoration: 'none', color: 'white'}} to="/welcome">Home</Link>
                         <Navbar.Collapse id="navbarScroll">
                             <Nav
                                 className="me-auto my-2 my-lg-0"
                                 navbarScroll
                             >
-                                {keycloak.authenticated && (
-                                    <Nav.Link style={{marginTop: '2%'}} href="/components">Components</Nav.Link>
-                                )}
-                                {keycloak.authenticated && (
-                                    <Nav.Link style={{marginTop: '2%'}} href="/products">Products</Nav.Link>
-                                )}
+                                {/*{keycloak.authenticated && (*/}
+                                    <Link style={{margin: '5.5% 6px 0px 6px', textDecoration: 'none', color: 'white'}} class="cypressComponent" to="/components">Components</Link>
+                                {/*)}*/}
+                                {/*{keycloak.authenticated && (*/}
+                                    <Link style={{margin: '5.5% 6px 0px 6px', textDecoration: 'none', color: 'white'}} class="cypressProducts" to="/products">Products</Link>
+                                {/*)}*/}
                                 <Dropdown style={{margin: "5px"}}>
                                     <Dropdown.Toggle variant="outline-light" id="dropdown-basic">
                                         {currency}
@@ -80,7 +81,7 @@ function CustomNavBar() {
                     </Container>
                 </Navbar>
             </div>
-            <Router>
+
                 <Routes>
                     <Route exact path='/welcome' element={<PageWelcome/>}/>
                     <Route exact path='/login' element={<PageLogin/>}/>

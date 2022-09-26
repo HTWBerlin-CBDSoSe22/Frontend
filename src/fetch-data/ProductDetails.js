@@ -23,7 +23,7 @@ export default function ProductDetails(props) {
         for (let i = 0; i < request.data.consistsOf.length; i++) {
             productDetails.push(
                 <tr>
-                    <td>{request.data.consistsOf[i].name}</td>
+                    <td class="cypressTableData">{request.data.consistsOf[i].name}</td>
                     {/*<td>{request.data.consistsOf[i].price}</td>*/}
                 </tr>
             )
@@ -48,7 +48,7 @@ export default function ProductDetails(props) {
     if (request.data) {
         showProductDetails();
         content =
-                <div>
+                <div style={{marginRight: "1rem"}}>
                     <h1 style={{marginLeft: "95px", textAlign: "center", width: "20rem", backgroundColor: "white", border: "solid 3px black", borderRadius: "8px"}}>Product Details</h1>
                     <div>
                         <CustomCard content={
@@ -74,7 +74,7 @@ export default function ProductDetails(props) {
                         }>
                         </CustomCard>
                         <div style={{display: "block"}}>
-                        <h3 style={{textAlign: "center", margin: "8px 7rem 5px 3rem", borderRadius: "7px",
+                        <h3 class="cypressTotalPrice" style={{textAlign: "center", margin: "8px 5.5rem 5px 3rem", borderRadius: "7px",
                             border: "solid", borderWidth: "2px", borderColor: "crimson", backgroundColor: "white"}}>
                             <strong>Total Price: {request.data.price.toFixed(2) + " " + request.data.currency}</strong>
                         </h3>

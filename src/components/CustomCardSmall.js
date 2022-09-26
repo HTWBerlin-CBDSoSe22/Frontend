@@ -7,10 +7,11 @@ function CustomCardSmall(props) {
             <Card style={{
                 width: '33rem',
                 height: '6rem',
+                marginBottom: '-5px',
                 textAlign: "center",
                 letterSpacing: "10px",
-                borderRadius: "5px",
-                border: "solid"
+                borderRadius: "25px",
+                border: "solid 3px #324E01"
             }}>
                 {props.content}
             </Card>

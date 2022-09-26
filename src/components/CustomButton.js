@@ -9,7 +9,9 @@ function CustomButton(props) {
                     disabled={props.disabled}
                     style={props.style}
                     style={{width:'40%', marginLeft:'1%'}}
-                    type={props.type}>{props.buttonName}</Button>
+                    type={props.type}
+            >{props.buttonName}
+            </Button>
     );
 }
 

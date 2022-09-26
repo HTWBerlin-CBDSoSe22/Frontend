@@ -36,7 +36,7 @@ function PageProducts(props){
     if (allProductsRequest.data) {
         content =
 
-                <div>
+                <div style={{marginLeft: "2rem"}}>
                     {/*<h1>View & Create Products</h1>*/}
                     <Row>
                         <Col>
