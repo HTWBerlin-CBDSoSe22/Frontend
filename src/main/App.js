@@ -1,5 +1,4 @@
 import React from 'react';
-import '../css/App.css';
 import CustomNavBar from '../components/CustomNavBar';
 import keycloak from "../Keycloak"
 import {ReactKeycloakProvider} from "@react-keycloak/web";

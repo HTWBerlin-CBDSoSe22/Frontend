@@ -1,11 +1,6 @@
 import {Component, useEffect, useRef, useState} from "react";
-// import axios from "axios";
-import Button from "react-bootstrap/Button";
 import axios from "axios";
 import CustomButton from "../components/CustomButton";
-import CustomSubmitForm from "../components/CustomSubmitForm";
-import alert from "bootstrap/js/src/alert";
-import UseAxiosGet from "../hooks/UseAxiosGet";
 import {InputGroup, Overlay, Tooltip} from "react-bootstrap";
 
 function CreateProduct(props) {

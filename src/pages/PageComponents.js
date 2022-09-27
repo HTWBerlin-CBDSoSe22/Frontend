@@ -1,18 +1,13 @@
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
-import Container from "react-bootstrap/Container";
 import ComponentsDetails from "../fetch-data/ComponentsDetails";
 import CustomButton from "../components/CustomButton";
 import CustomCard from "../components/CustomCard";
 import CustomCardSmall from "../components/CustomCardSmall";
-import CustomSubmitForm from "../components/CustomSubmitForm";
 import UseAxiosGet from "../hooks/UseAxiosGet";
-import ProductDetails from "../fetch-data/ProductDetails";
 import CreateProduct from "../fetch-data/CreateProduct";
 import {useEffect, useState} from "react";
-import Component from "../components/Component";
 
 
 function PageComponents(props) {
@@ -20,8 +15,6 @@ function PageComponents(props) {
     const [componentListForNewProduct, setComponentListForNewProduct] = useState([]);
     const [selectedComponentList, setSelectedComponentList] = useState([]);
     const [selectedComponents, setSelectedComponents] = useState([]);
-
-    const [buttonLabelList, setButtonLabelList] = useState([]);
 
     const showAllComponentsUrl = 'http://localhost:8088/components';
 
@@ -49,7 +42,6 @@ function PageComponents(props) {
 
             selectComponentsById(id);
         } else {
-            // alert('You already selected the component "' + componentList[id].name + '"');
             removeComponentsById(id);
 
             deselectComponentsById(id)
@@ -87,29 +79,22 @@ function PageComponents(props) {
     }
 
     const selectComponentsById = (id) => {
-        // setButtonLabel("DESELECT");
-        // setSelectedComponents(current => [...current, componentList[id].name]);
         setSelectedComponentList(current => [...current, id]);
     }
 
     const deselectComponentsById = (id) => {
-        // setButtonLabel("SELECT");
-        // setSelectedComponents(selectedComponents.filter((element) => element !== selectedComponents[id]));
         setSelectedComponentList(selectedComponentList.filter((element) => element !== id));
     }
 
     const showAllComponents = () => {
         for (let i = 0; i < componentList.length; i++) {
-            // setButtonLabelList(current => [...current, "SELECTED"]);
             componentButtonsList.push(
                 <ListGroup.Item key={i}>
                     <CustomButton buttonClick={() => handleClick(i, componentList[i].name)}
                                   buttonName={i + 1 + ": " + componentList[i].name}
                     ></CustomButton>
-                    {/*<CustomButton buttonClick={() => handleDeselectClick(i)} buttonName={"-"} style={{marginLeft: '80px'}}></CustomButton>*/}
                     <CustomButton buttonClick={(e) => handleSelectClick(i, e)}
                                   buttonName={"SELECT"} style={{marginLeft: '80px'}}></CustomButton>
-                    {/*<CustomButton buttonClick={() => handleSelectClick(i)} buttonName={buttonLabelList[i]} style={{marginLeft: '80px'}}></CustomButton>*/}
                 </ListGroup.Item>
             )
         }
@@ -149,8 +134,6 @@ function PageComponents(props) {
                         </CustomCard>
                     </Col>
                     <Col>
-                        {/*<h3>will work soon...</h3>*/}
-                        {/*<h6>(waiting for product service to be ready)</h6>*/}
                         <ComponentsDetails componentId={componentId}/>
                     </Col>
                 </Row>

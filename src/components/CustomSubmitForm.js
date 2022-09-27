@@ -1,6 +1,4 @@
 import React, {useState} from 'react';
-import CustomButton from "./CustomButton";
-
 
 function CustomSubmitForm(props) {
     const [name, setName] = useState("");

@@ -1,10 +1,8 @@
 import React, {Component} from "react";
-// import fruits_banner from "./src/assets";
 
 class PageWelcome extends Component{
     render() {
         return (
-            // style={{backgroundImage: `url(https://cdn.pixabay.com/photo/2015/12/30/11/57/fruits-1114060_1280.jpg)`, opacity: ".2"}}
             <React.Fragment>
                 <div>
                     <h1>Welcome to this website!</h1>

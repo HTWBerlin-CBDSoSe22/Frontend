@@ -28,12 +28,6 @@ export default function ProductDetails(props) {
                 </tr>
             )
         }
-        // productDetails.push(
-        //     <tr>
-        //         <td><strong>Total pirce</strong></td>
-        //         <td><strong>{request.data.price + " " + request.data.currency}</strong></td>
-        //     </tr>
-        // )
     }
 
     if (request.error) {

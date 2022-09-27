@@ -2,7 +2,6 @@ import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import Container from "react-bootstrap/Container";
 import {BrowserRouter as Router, Link, Route, Routes} from "react-router-dom";
-import PageLogin from "../pages/PageLogin";
 import PageComponents from "../pages/PageComponents";
 import PageNoMatch from "../pages/PageNoMatch";
 import PageWelcome from "../pages/PageWelcome";
@@ -84,7 +83,6 @@ function CustomNavBar() {
 
                 <Routes>
                     <Route exact path='/welcome' element={<PageWelcome/>}/>
-                    <Route exact path='/login' element={<PageLogin/>}/>
                     <Route path='/components' element={<PageComponents selectedCurrency={currency}/>}/>
                     <Route path='/products' element={<PageProducts selectedCurrency={currency}/>}/>
                     <Route path='*' element={<PageNoMatch/>}/>

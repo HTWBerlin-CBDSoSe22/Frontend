@@ -3,13 +3,11 @@ import ListGroup from "react-bootstrap/ListGroup";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import ProductDetails from "../fetch-data/ProductDetails";
-import PostProduct from "../fetch-data/PostProduct";
 import UseAxiosGet from "../hooks/UseAxiosGet";
 
 import {useEffect, useState} from "react";
 import CustomButton from "../components/CustomButton";
 import CustomCard from "../components/CustomCard";
-import CreateProduct from "../fetch-data/CreateProduct";
 
 
 function PageProducts(props){
