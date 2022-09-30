@@ -11,71 +11,62 @@ import React, {useState} from "react";
 import {Dropdown} from "react-bootstrap";
 
 function CustomNavBar() {
-    const {keycloak, initialized} = useKeycloak();
-    const [currency, newCurrency] = useState('EUR');
+    const {keycloak, setKeycloak} = useKeycloak();
+    const [currency, setCurrency] = useState('EUR');
 
     function changeCurrency(currency) {
-        newCurrency(currency);
+        setCurrency(currency);
     }
 
     return (
         <div >
             <Router>
             <div>
+
                 <Navbar bg="dark" variant="dark" expand="lg" fixed="top">
                     <Container fluid>
                         <Link style={{margin: '0px 6px 0px 6px', fontSize: '1.5em', textDecoration: 'none', color: 'white'}} to="/welcome">Home</Link>
+
                         <Navbar.Collapse id="navbarScroll">
                             <Nav
                                 className="me-auto my-2 my-lg-0"
                                 navbarScroll
                             >
                                 {keycloak.authenticated && (
-                                    <Link style={{margin: '5.5% 6px 0px 6px', textDecoration: 'none', color: 'white'}} class="cypressComponent" to="/components">Components</Link>
+                                    <Link className="link-components" to="/components">Components</Link>
                                 )}
                                 {keycloak.authenticated && (
-                                    <Link style={{margin: '5.5% 6px 0px 6px', textDecoration: 'none', color: 'white'}} class="cypressProducts" to="/products">Products</Link>
+                                    <Link className="link-products" to="/products">Products</Link>
                                 )}
+
                                 <Dropdown style={{margin: "5px"}}>
-                                    <Dropdown.Toggle variant="outline-light" id="dropdown-basic">
-                                        {currency}
-                                    </Dropdown.Toggle>
+                                    <Dropdown.Toggle variant="outline-light" id="dropdown-basic">{currency}</Dropdown.Toggle>
+
                                     <Dropdown.Menu>
-                                        <Dropdown.Item
-                                            onClick={() => changeCurrency('EUR')}
-                                        >Euro</Dropdown.Item>
-                                        <Dropdown.Item
-                                            onClick={() => changeCurrency('USD')}
-                                        >Dollar</Dropdown.Item>
-                                        <Dropdown.Item
-                                            onClick={() => changeCurrency('SEK')}
-                                        >Swedish Crown</Dropdown.Item>
-                                        <Dropdown.Item
-                                            onClick={() => changeCurrency('GBP')}
-                                        >Pound</Dropdown.Item>
-                                        <Dropdown.Item
-                                            onClick={() => changeCurrency('CHF')}
-                                        >
-                                        Swiss Franc
-                                        </Dropdown.Item>
+                                        <Dropdown.Item onClick={() => changeCurrency('EUR')}>Euro</Dropdown.Item>
+                                        <Dropdown.Item onClick={() => changeCurrency('USD')}>Dollar</Dropdown.Item>
+                                        <Dropdown.Item onClick={() => changeCurrency('SEK')}>Swedish Crown</Dropdown.Item>
+                                        <Dropdown.Item onClick={() => changeCurrency('GBP')}>Pound</Dropdown.Item>
+                                        <Dropdown.Item onClick={() => changeCurrency('CHF')}>Swiss Franc</Dropdown.Item>
                                     </Dropdown.Menu>
+
                                 </Dropdown>
                             </Nav>
                             <Nav>
                                 {keycloak.authenticated && (
-                                    <Nav.Link
-                                        variant={"primary"}
-                                        onClick={() => keycloak.logout()}
+                                    <Nav.Link variant={"primary"} onClick={() => keycloak.logout()}
                                     >
                                         Logout ({keycloak.tokenParsed.preferred_username})
                                     </Nav.Link>
                                 )}
                                 {!keycloak.authenticated && (
-                                    <Nav.Link variant={"primary"}
-                                              onClick={() => keycloak.login()}
-                                    >Login</Nav.Link>
+                                    <Nav.Link variant={"primary"} onClick={() => keycloak.login()}
+                                    >
+                                        Login
+                                    </Nav.Link>
                                 )}
                             </Nav>
+
                         </Navbar.Collapse>
                     </Container>
                 </Navbar>
@@ -87,8 +78,8 @@ function CustomNavBar() {
                     <Route path='/products' element={<PageProducts selectedCurrency={currency}/>}/>
                     <Route path='*' element={<PageNoMatch/>}/>
                 </Routes>
-            </Router>
 
+            </Router>
         </div>
     );
 }

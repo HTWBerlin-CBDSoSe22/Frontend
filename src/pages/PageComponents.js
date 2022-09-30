@@ -7,7 +7,7 @@ import CustomCard from "../components/CustomCard";
 import CustomCardSmall from "../components/CustomCardSmall";
 import UseAxiosGet from "../hooks/UseAxiosGet";
 import CreateProduct from "../fetch-data/CreateProduct";
-import {useEffect, useState} from "react";
+import {useState} from "react";
 
 
 function PageComponents(props) {
@@ -30,17 +30,16 @@ function PageComponents(props) {
 
     const handleClick = (id, name) => {
         setComponentId(id + 1)
-        console.log("name: " + name);
     }
 
     const handleSelectClick = (id, event) => {
         if (!componentIsSelected(id)) {
             addComponentsById(id);
+
+            selectComponentsById(id);
             event.currentTarget.style.backgroundColor = 'crimson';
             event.currentTarget.style.color = 'white'
             event.currentTarget.textContent = "DESELECT";
-
-            selectComponentsById(id);
         } else {
             removeComponentsById(id);
 
@@ -48,16 +47,6 @@ function PageComponents(props) {
             event.currentTarget.style.backgroundColor = 'white';
             event.currentTarget.style.color = 'green'
             event.currentTarget.textContent = "SELECT";
-        }
-    }
-
-    const handleDeselectClick = (id) => {
-        if (componentIsSelected(id)) {
-            removeComponentsById(id);
-
-            deselectComponentsById(id)
-        } else {
-            alert('The component "' + componentList[id].name + '" is already deselected.');
         }
     }
 
@@ -94,7 +83,8 @@ function PageComponents(props) {
                                   buttonName={i + 1 + ": " + componentList[i].name}
                     ></CustomButton>
                     <CustomButton buttonClick={(e) => handleSelectClick(i, e)}
-                                  buttonName={"SELECT"} style={{marginLeft: '80px'}}></CustomButton>
+                                  buttonName={"SELECT"} style={{marginLeft: '80px'}}
+                    ></CustomButton>
                 </ListGroup.Item>
             )
         }
@@ -116,7 +106,8 @@ function PageComponents(props) {
             <div style={{marginLeft: "2rem"}}>
                 <Row>
                     <Col>
-                        <h1 style={{marginLeft: "133px", textAlign: "center", width: "16rem", backgroundColor: "white", border: "solid 3px black", borderRadius: "8px"}}>Components</h1>
+                        <h1 className="h1-components-page">Components</h1>
+
                         <CustomCardSmall content={
                             <div>
                                 {selectedComponents}
@@ -126,6 +117,7 @@ function PageComponents(props) {
                             </div>
                         }>
                         </CustomCardSmall>
+
                         <CustomCard content={
                             <ListGroup style={{padding: "10px 20px 10px 20px"}} variant="flush">
                                 {componentButtonsList}
@@ -133,11 +125,12 @@ function PageComponents(props) {
                         }>
                         </CustomCard>
                     </Col>
+
                     <Col>
                         <ComponentsDetails componentId={componentId}/>
                     </Col>
-                </Row>
 
+                </Row>
             </div>
     }
 

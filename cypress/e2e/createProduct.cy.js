@@ -1,4 +1,5 @@
 /* eslint-disable */
+// cypress test only works if the keycloak.authenticated part is commented out (line 35, 37, 38, 40) in components/CustomNavBar.js - assuming that you are already logged in
 describe('create product', () => {
 
   const newProductName = 'newProduct01';
@@ -14,7 +15,7 @@ describe('create product', () => {
   it('go to /components', () => {
     // We use the `cy.get()` command to get all elements that match the selector.
     // Then, we use `should` to assert that thw two URLs match
-    cy.get('.cypressComponent').click()
+    cy.get('.link-components').click()
     cy.url().should("eq", "http://localhost:3000/components")
     cy.wait(4000)
   })
@@ -27,7 +28,7 @@ describe('create product', () => {
   })
 
   it('go to /products', () => {
-    cy.get('.cypressProducts').click()
+    cy.get('.link-products').click()
     cy.url().should("eq", "http://localhost:3000/products")
     cy.wait(4000)
   })
@@ -37,7 +38,7 @@ describe('create product', () => {
     cy.wait(4000)
     cy.get('.card').eq(1).contains('h2', newProductName).should('exist')
     cy.get('.table').contains('td', selectedComponent).should('exist')
-    cy.get('.cypressTotalPrice').contains('strong', totalPriceOfNewProduct).should('exist')
+    cy.get('.h3-total-price').contains('strong', totalPriceOfNewProduct).should('exist')
   })
 
 })

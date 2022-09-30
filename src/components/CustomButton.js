@@ -10,7 +10,8 @@ function CustomButton(props) {
                     style={props.style}
                     style={{width:'40%', marginLeft:'1%'}}
                     type={props.type}
-            >{props.buttonName}
+            >
+                {props.buttonName}
             </Button>
     );
 }
