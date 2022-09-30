@@ -1,18 +1,13 @@
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
-import Container from "react-bootstrap/Container";
 import ComponentsDetails from "../fetch-data/ComponentsDetails";
 import CustomButton from "../components/CustomButton";
 import CustomCard from "../components/CustomCard";
 import CustomCardSmall from "../components/CustomCardSmall";
-import CustomSubmitForm from "../components/CustomSubmitForm";
 import UseAxiosGet from "../hooks/UseAxiosGet";
-import ProductDetails from "../fetch-data/ProductDetails";
 import CreateProduct from "../fetch-data/CreateProduct";
-import {useEffect, useState} from "react";
-import Component from "../components/Component";
+import {useState} from "react";
 
 
 function PageComponents(props) {
@@ -20,8 +15,6 @@ function PageComponents(props) {
     const [componentListForNewProduct, setComponentListForNewProduct] = useState([]);
     const [selectedComponentList, setSelectedComponentList] = useState([]);
     const [selectedComponents, setSelectedComponents] = useState([]);
-
-    const [buttonLabelList, setButtonLabelList] = useState([]);
 
     const showAllComponentsUrl = 'http://localhost:8088/components';
 
@@ -37,35 +30,23 @@ function PageComponents(props) {
 
     const handleClick = (id, name) => {
         setComponentId(id + 1)
-        console.log("name: " + name);
     }
 
     const handleSelectClick = (id, event) => {
         if (!componentIsSelected(id)) {
             addComponentsById(id);
+
+            selectComponentsById(id);
             event.currentTarget.style.backgroundColor = 'crimson';
             event.currentTarget.style.color = 'white'
             event.currentTarget.textContent = "DESELECT";
-
-            selectComponentsById(id);
         } else {
-            // alert('You already selected the component "' + componentList[id].name + '"');
             removeComponentsById(id);
 
             deselectComponentsById(id)
             event.currentTarget.style.backgroundColor = 'white';
             event.currentTarget.style.color = 'green'
             event.currentTarget.textContent = "SELECT";
-        }
-    }
-
-    const handleDeselectClick = (id) => {
-        if (componentIsSelected(id)) {
-            removeComponentsById(id);
-
-            deselectComponentsById(id)
-        } else {
-            alert('The component "' + componentList[id].name + '" is already deselected.');
         }
     }
 
@@ -87,29 +68,23 @@ function PageComponents(props) {
     }
 
     const selectComponentsById = (id) => {
-        // setButtonLabel("DESELECT");
-        // setSelectedComponents(current => [...current, componentList[id].name]);
         setSelectedComponentList(current => [...current, id]);
     }
 
     const deselectComponentsById = (id) => {
-        // setButtonLabel("SELECT");
-        // setSelectedComponents(selectedComponents.filter((element) => element !== selectedComponents[id]));
         setSelectedComponentList(selectedComponentList.filter((element) => element !== id));
     }
 
     const showAllComponents = () => {
         for (let i = 0; i < componentList.length; i++) {
-            // setButtonLabelList(current => [...current, "SELECTED"]);
             componentButtonsList.push(
                 <ListGroup.Item key={i}>
                     <CustomButton buttonClick={() => handleClick(i, componentList[i].name)}
                                   buttonName={i + 1 + ": " + componentList[i].name}
                     ></CustomButton>
-                    {/*<CustomButton buttonClick={() => handleDeselectClick(i)} buttonName={"-"} style={{marginLeft: '80px'}}></CustomButton>*/}
                     <CustomButton buttonClick={(e) => handleSelectClick(i, e)}
-                                  buttonName={"SELECT"} style={{marginLeft: '80px'}}></CustomButton>
-                    {/*<CustomButton buttonClick={() => handleSelectClick(i)} buttonName={buttonLabelList[i]} style={{marginLeft: '80px'}}></CustomButton>*/}
+                                  buttonName={"SELECT"} style={{marginLeft: '80px'}}
+                    ></CustomButton>
                 </ListGroup.Item>
             )
         }
@@ -131,7 +106,8 @@ function PageComponents(props) {
             <div style={{marginLeft: "2rem"}}>
                 <Row>
                     <Col>
-                        <h1 style={{marginLeft: "133px", textAlign: "center", width: "16rem", backgroundColor: "white", border: "solid 3px black", borderRadius: "8px"}}>Components</h1>
+                        <h1 className="h1-components-page">Components</h1>
+
                         <CustomCardSmall content={
                             <div>
                                 {selectedComponents}
@@ -141,6 +117,7 @@ function PageComponents(props) {
                             </div>
                         }>
                         </CustomCardSmall>
+
                         <CustomCard content={
                             <ListGroup style={{padding: "10px 20px 10px 20px"}} variant="flush">
                                 {componentButtonsList}
@@ -148,13 +125,12 @@ function PageComponents(props) {
                         }>
                         </CustomCard>
                     </Col>
+
                     <Col>
-                        {/*<h3>will work soon...</h3>*/}
-                        {/*<h6>(waiting for product service to be ready)</h6>*/}
                         <ComponentsDetails componentId={componentId}/>
                     </Col>
-                </Row>
 
+                </Row>
             </div>
     }
 

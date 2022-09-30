@@ -1,5 +1,4 @@
 import React from 'react';
-import '../css/App.css';
 import CustomNavBar from '../components/CustomNavBar';
 import keycloak from "../Keycloak"
 import {ReactKeycloakProvider} from "@react-keycloak/web";
@@ -11,7 +10,7 @@ function App() {
         silentCheckSsoRedirectUri: window.location.origin + '/silent-check-sso.html'
     };
     return (
-        <div style={{margin: "90px 20px 20px 20px", padding: "30px", paddingLeft: "90px", paddingRight: "90px", backgroundColor: "#F6FFE4", border: "solid 3px black", borderRadius: "30px"}}>
+        <div className="div-app">
             <ReactKeycloakProvider authClient={keycloak}
                                    initOptions={initOptions}
             >

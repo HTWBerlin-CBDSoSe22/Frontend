@@ -69,16 +69,15 @@ export default function ComponentsDetails(props) {
         showComponentDetails();
         content =
             <div style={{marginLeft: "1rem"}}>
-                <h1 style={{marginLeft: "80px", textAlign: "center", width: "23rem", backgroundColor: "white", border: "solid 3px black", borderRadius: "8px"}}>Component Details</h1>
+                <h1 className="h1-component-details">Component Details</h1>
+
                 <div>
                     <CustomCard content={
                         <div>
-                            <h2 style={{
-                                display: "block",
-                                margin: "5px auto 5px auto", width: "20rem", borderRadius: "15px",
-                                border: "solid 1px #324E01"}}>{request.data.name}</h2>
-                            <img style={{borderRadius: "15px",
-                                border: "solid 1px #324E01"}} variant="top" src={require("../assets/fruit_component.jpeg")}/>
+                            <h2 className="h2-component-name">{request.data.name}</h2>
+
+                            <img className="img" variant="top" src={require("../assets/fruit_component.jpeg")}/>
+
                             <Table responsive
                                    style={{marginTop: "1rem"}} striped bordered hover>
                                 <thead>
